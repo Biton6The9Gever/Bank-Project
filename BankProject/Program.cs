@@ -42,11 +42,10 @@ namespace BankProject
 
         static void Main(string[] args)
         {
-            string query = @"SELECT * FROM Users";
+            ILoginHandler loginHandler = new LoginHandler();
+            Console.WriteLine(loginHandler.Login()); ;
 
-            DataTable dt = SQLHelper.SelectData(query);
 
-            
         }
     }
 }
