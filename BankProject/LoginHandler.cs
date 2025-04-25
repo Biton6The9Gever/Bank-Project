@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,12 @@ namespace BankProject
         bool CheckLogin(string username, string password);
         string GetPassword();
     }
-    public class LoginHandler : ILoginHandler
+    public interface IRegiseterHandler
+    {
+        bool Register();
+        string GetPassword();
+    }
+    public class LoginHandler : ILoginHandler, IRegiseterHandler
     {
         public LoginHandler()
         {
@@ -24,7 +30,7 @@ namespace BankProject
             Console.WriteLine("[==========================================]");
             Console.WriteLine($"        Login - Page");
             Console.WriteLine("[==========================================]");
-            Console.Write("Enter your username: ");
+            Console.Write(" Enter your username: ");
             string username = Console.ReadLine();
             Console.Write("\n Enter your password: ");
             string password = GetPassword();
@@ -71,6 +77,56 @@ namespace BankProject
             Console.WriteLine();
 
             return password;
+        }
+
+        public bool Register()
+        {
+            Console.WriteLine("[==========================================]");
+            Console.WriteLine($"        Register - Page");
+            Console.WriteLine("[==========================================]");
+            Console.Write(" Enter your username: ");
+            string username = Console.ReadLine();
+            Console.Write("\n Enter your password: ");
+            string password = GetPassword();
+            Console.Write("\n Confirm your password: ");
+            string confirmPassword = GetPassword();
+            Console.Write("\n Enter your first name: ");
+            string firstName = Console.ReadLine();
+            Console.Write("\n Enter your last name: ");
+            string lastName = Console.ReadLine();
+            //TODO hash the password
+            if(confirmPassword != password)
+            {
+                Console.WriteLine("ERROR | Passwords do not match");
+                Console.ReadKey();
+                Console.Clear();
+                return false;
+            }
+            string query = $"SELECT COUNT(*) FROM Users WHERE username = '{username}'";
+            if(SQLHelper.SelectScalarToBool(query))
+            {
+                Console.WriteLine("ERROR | Username already exists");
+                Console.ReadKey();
+                Console.Clear();
+                return false;
+            }
+            query = $"INSERT INTO Users (Username, Password, FirstName, LastName) VALUES ('{username}', '{password}', '{firstName}', '{lastName}')";
+            int rowsAffected = SQLHelper.DoQuery(query);
+            if (rowsAffected > 0)
+            {
+                Console.WriteLine("Logging in !");
+                Console.ReadKey();
+                Console.Clear();
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("ERROR | Something went wrong while logging you in please contact support!");
+                Console.ReadKey();
+                Console.Clear();
+                return false;
+            }
+
         }
     }
 }
