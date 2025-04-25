@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 
 namespace BankProject
 {
 
     public class SQLHelper
     {
-        public static string connectionString = "Data Source=Database.db;Version=3;";
+        private static readonly string connectionString =
+    @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Biton\VisualStudio\BankProject\BankProject\Database.mdf;Integrated Security=True";
+
 
         public static DataTable SelectData(string query)
         {
             DataTable dt = new DataTable();
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
-                using (var command = new SQLiteCommand(query, connection))
+                using (var command = new SqlCommand(query, connection))
                 {
                     try
                     {
@@ -23,10 +25,8 @@ namespace BankProject
                         command.CommandTimeout = 0;
 
                         // Execute the query and fill the DataTable
-                        using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(command))
-                        {
-                            adapter.Fill(dt);
-                        }
+                        SqlDataReader reader = command.ExecuteReader();
+                        dt.Load(reader);
                     }
                     catch (Exception e)
                     {
@@ -47,9 +47,9 @@ namespace BankProject
             // This method is used to execute a query on the database file
             int rowsAffected = 0;
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
-                using (var command = new SQLiteCommand(query, connection))
+                using (var command = new SqlCommand(query, connection))
                 {
                     try
                     {
@@ -75,9 +75,9 @@ namespace BankProject
         public static object SelectScalar(string query)
         {
             object result = null;
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
-                using (var command = new SQLiteCommand(query, connection))
+                using (var command = new SqlCommand(query, connection))
                 {
                     try
                     {

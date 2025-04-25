@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[Users]
+(
+	[username] NVARCHAR(MAX) NOT NULL PRIMARY KEY
+)

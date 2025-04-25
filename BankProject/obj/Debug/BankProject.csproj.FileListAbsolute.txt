@@ -1,3 +1,5 @@
+D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\Database.mdf
+D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\Database_log.ldf
 D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\BankProject.exe.config
 D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\BankProject.exe
 D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\BankProject.pdb

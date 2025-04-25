@@ -42,9 +42,14 @@ namespace BankProject
 
         static void Main(string[] args)
         {
-            ILoginHandler loginHandler = new LoginHandler();
-            Console.WriteLine(loginHandler.Login()); ;
-
+            //ILoginHandler loginHandler = new LoginHandler();
+            //Console.WriteLine(loginHandler.Login()); ;
+            string query = @"INSERT INTO Users (Username, Password, FirstName, LastName, AccountNumber)
+VALUES ('biton1', 'biton1', 'biton1', 'biton1', 1);
+";
+            SQLHelper.DoQuery(query);
+            DataTable dt =SQLHelper.SelectData("SELECT * FROM Users");
+            SQLHelper.PrintDataTable(dt);
 
         }
     }
