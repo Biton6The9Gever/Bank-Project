@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -7,16 +8,14 @@ using System.Threading.Tasks;
 
 namespace BankProject
 {
+
     public interface ILoginHandler
     {
         bool Login();
-        bool CheckLogin(string username, string password);
-        string GetPassword();
     }
     public interface IRegiseterHandler
     {
         bool Register();
-        string GetPassword();
     }
     public class LoginHandler : ILoginHandler, IRegiseterHandler
     {
@@ -44,6 +43,7 @@ namespace BankProject
             bool answer = SQLHelper.SelectScalarToBool(query);
             if(answer)
             {
+                SessionManger.CurrentUser = (username, GetUserId(username)); 
                 return true;
             }
             return false;
@@ -77,6 +77,14 @@ namespace BankProject
             Console.WriteLine();
 
             return password;
+        }
+        public int GetUserId(string username)
+        {
+            // This method is used to get the user id from the database
+            string query = $"SELECT UserId FROM Users WHERE username = '{username}'";
+            int userId = SQLHelper.SelectScalarToInt(query);
+            
+            return userId;           
         }
 
         public bool Register()
@@ -114,10 +122,23 @@ namespace BankProject
             int rowsAffected = SQLHelper.DoQuery(query);
             if (rowsAffected > 0)
             {
-                Console.WriteLine("Logging in !");
-                Console.ReadKey();
-                Console.Clear();
-                return true;
+                int userId = GetUserId(username);
+                if(userId != 0)
+                {
+                    SessionManger.CurrentUser = (username,userId);
+                    Console.WriteLine("Logging in !");
+                    Console.ReadKey();
+                    Console.Clear();
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("ERROR | Something went wrong while logging you in please contact support!");
+                    Console.ReadKey();
+                    Console.Clear();
+                    return false;
+                }
+                    
             }
             else
             {
@@ -126,7 +147,6 @@ namespace BankProject
                 Console.Clear();
                 return false;
             }
-
         }
     }
 }

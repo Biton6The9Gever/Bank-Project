@@ -61,9 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountMange.cs" />
     <Compile Include="LoginHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionManger.cs" />
     <Compile Include="SQLHelper.cs" />
   </ItemGroup>
   <ItemGroup>

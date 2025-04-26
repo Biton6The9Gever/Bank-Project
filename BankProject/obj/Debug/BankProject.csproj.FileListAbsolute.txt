@@ -3,16 +3,7 @@ D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\Database_log.ldf
 D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\BankProject.exe.config
 D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\BankProject.exe
 D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\BankProject.pdb
-D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\EntityFramework.dll
-D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\EntityFramework.SqlServer.dll
-D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\System.Data.SQLite.dll
-D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\System.Data.SQLite.EF6.dll
-D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\System.Data.SQLite.Linq.dll
-D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\EntityFramework.xml
-D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\EntityFramework.SqlServer.xml
-D:\Biton\VisualStudio\BankProject\BankProject\bin\Debug\System.Data.SQLite.xml
 D:\Biton\VisualStudio\BankProject\BankProject\obj\Debug\BankProject.csproj.AssemblyReference.cache
 D:\Biton\VisualStudio\BankProject\BankProject\obj\Debug\BankProject.csproj.CoreCompileInputs.cache
-D:\Biton\VisualStudio\BankProject\BankProject\obj\Debug\BankProj.3A9C35BD.Up2Date
 D:\Biton\VisualStudio\BankProject\BankProject\obj\Debug\BankProject.exe
 D:\Biton\VisualStudio\BankProject\BankProject\obj\Debug\BankProject.pdb

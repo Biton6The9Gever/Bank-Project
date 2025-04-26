@@ -113,7 +113,20 @@ namespace BankProject
                 return false;
             }
         }
-
+        public static int SelectScalarToInt(string query)
+        {
+            // Select the answer as object
+            object obj = SelectScalar(query);
+            if (obj != null)
+            {
+                return Convert.ToInt32(obj);
+            }
+            else
+            {
+                Console.WriteLine("ERROR | While preforming the query");
+                return 0;
+            }
+        }
         public static void PrintDataTable(DataTable dt)
         {
             // Check if the DataTable is empty
