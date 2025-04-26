@@ -1,7 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Data;
-using System.Data.SQLite;
 
 namespace BankProject
 {
